@@ -1,0 +1,749 @@
+:root {
+    /* Primary Colors */
+    --color-primary: #3b68e4;
+    --color-primary-dark: #002e9d;
+    --color-primary-light: #4b78f4;
+    
+    /* Background Colors */
+    --color-bg-light: #ebf4f5;
+    --color-bg-mid: #b5c6e0;
+    --color-bg-dark: rgb(2, 12, 58);
+    
+    /* Text Colors */
+    --color-text-dark: rgb(54, 54, 54);
+    --color-text-light: #ebf4f5;
+    --color-text-display: #03123b;
+    
+    /* Glass Effects */
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow-dark: rgba(0, 0, 0, 0.15);
+    --glass-shadow-light: rgba(255, 255, 255, 0.055);
+
+    /* Light Theme Colors */
+    --bg-gradient-start: #ebf4f5;
+    --bg-gradient-middle: #b5c6e0;
+    --bg-gradient-end: rgb(2, 12, 58);
+    
+    --text-primary: rgb(54, 54, 54);
+    --text-secondary: rgba(0, 0, 0, 0.7);
+    --display-text: #03123b;
+    
+    --btn-bg: rgba(255, 255, 255, 0.2);
+    --btn-border: rgba(255, 255, 255, 0.3);
+    --btn-shadow: rgba(0, 0, 0, 0.15);
+    
+    --calc-bg: rgba(255, 255, 255, 0.1);
+    --calc-border: rgba(255, 255, 255, 0.2);
+
+    /* Light theme defaults */
+    --description-text: #333333;
+    --muted-text: #6c757d;
+    --secondary-text: #6c757d;
+    --glass-text: #2d3436;
+
+    --history-bg: #ffffff;
+    --history-text: #333333;
+    --history-item-hover: #f0f0f0;
+    --history-border: #e0e0e0;
+}
+
+/* Dark Theme Colors */
+[data-theme="dark"] {
+    --bg-gradient-start: #1a1f25;
+    --bg-gradient-middle: #2c3e50;
+    --bg-gradient-end: #1a1a1a;
+    
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --display-text: #ffffff;
+    
+    --btn-bg: rgba(255, 255, 255, 0.2);
+    --btn-border: rgba(255, 255, 255, 0.1);
+    --btn-shadow: rgba(0, 0, 0, 0.3);
+    
+    --calc-bg: rgba(255, 255, 255, 0.1);
+    --calc-border: rgba(255, 255, 255, 0.1);
+
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --calculator-bg: rgba(255, 255, 255, 0.1);
+    --special-btn-bg: #4d4d4d;
+
+    --description-text: #ffffff;
+    --muted-text: #a7a7a7;
+    --secondary-text: #b0b0b0;
+    --glass-text: #ffffff;
+
+    --history-bg: #2d2d2d;
+    --history-text: #ffffff;
+    --history-item-hover: #3d3d3d;
+    --history-border: #404040;
+}
+
+/* Body Background */
+body {
+    background: linear-gradient(
+        135deg,
+        var(--bg-gradient-start) 0%,
+        var(--bg-gradient-middle) 50%,
+        var(--bg-gradient-end) 100%
+    );
+    color: var(--text-primary);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;  /* Change to column layout */
+    overflow: hidden;  /* Prevent overflow */
+}
+
+/* Circle Background */
+
+/* Update the existing text-glass class */
+.text-glass {
+    color: var(--color-primary-dark);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}  
+
+/* Add dark mode override */
+[data-theme="dark"] .text-glass {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Button Styles */
+.calc-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);  /* Adds the blur effect */
+    -webkit-backdrop-filter: blur(10px);  /* For Safari support */
+    color: var(--color-text-dark);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smoother transition curve */
+    transform: scale(1);  /* Initial scale */
+    box-shadow: 
+        4px 4px 6px var(--glass-shadow-dark),
+        -4px -4px 6px var(--glass-shadow-light);
+    padding: 10px;
+    font-size: 20px;
+}
+
+/* Special Button (like =, +, etc.) */
+.calc-btn-special {
+    background-color: var(--color-primary);
+    color: var(--color-text-light) !important;
+    border-color: var(--color-primary-dark);
+}
+
+/* Active Button Style (Inner Shadow when clicked) */
+.calc-btn:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2), inset -2px -2px 5px rgba(255, 255, 255, 0.6); /* Inner shadow effect when button is pressed */
+}
+
+/* Hover Effect for Buttons */
+.calc-btn:hover {
+    background: rgba(255, 255, 255, 0.4); /* Slightly more visible background on hover */
+    box-shadow: 
+        6px 6px 12px rgba(0, 0, 0, 0.3), 
+        -6px -6px 12px rgba(255, 255, 255, 0.1);
+    transform: scale(1.05) translateY(-2px);  /* Slight pop-up effect */
+    color: var(--color-primary-light) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Special Button Hover Effect */
+.calc-btn-special:hover {
+    background-color: var(--color-primary-light);
+    box-shadow: 
+        6px 6px 12px rgba(0, 0, 0, 0.3),
+        -6px -6px 12px rgba(59, 104, 228, 0.2);
+    transform: scale(1.05) translateY(-2px);
+    color: var(--color-text-light) !important;
+}
+
+/* Calculator Container (Glassmorphism) */
+.calculator {
+    position: relative;
+    width: 350px;
+    min-height: 500px;
+    background: var(--calc-bg);
+    border: 1px solid var(--calc-border);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.2),
+        0 15px 35px rgba(0, 0, 0, 0.15),
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* Display/Input Field for Calculator */
+#display {
+    background: transparent;
+    border: none;
+    color: var(--color-text-display) !important;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: clamp(20px, 8vw, 50px) !important;
+    /* Firefox scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--glass-bg);
+    transition: font-size 0.2s ease-in-out;
+}
+
+/* Display Scrollbar Styles */
+#display::-webkit-scrollbar {
+    height: 6px;
+}
+
+#display::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+#display::-webkit-scrollbar-track {
+    background: var(--glass-bg);
+    border-radius: 4px;
+}
+
+/* Expression Display */
+#expression-display {
+    min-height: 1.2em;
+    color: rgba(255, 255, 255, 0.6);
+    padding-right: 10px;
+    font-family: monospace;
+    overflow-x: auto;
+    white-space: nowrap;
+    /* Firefox scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--glass-bg);
+}
+
+/* Expression Display Scrollbar Styles */
+#expression-display::-webkit-scrollbar {
+    height: 6px;
+}
+
+#expression-display::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+#expression-display::-webkit-scrollbar-track {
+    background: var(--glass-bg);
+    border-radius: 4px;
+}
+
+/* toggle button for light and dark mode */
+
+.header {
+    width: 100vw;
+    padding: 1rem;
+    position: fixed;  /* Fix the header position */
+    top: 0;
+    left: 0;
+    z-index: 1000;  /* Ensure header stays on top */
+}
+
+.theme-toggle {
+    margin-right: 2rem;
+}
+
+.theme-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.them-btn:hover {
+    color: #333;
+}
+
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.dark-mode .theme-btn {
+    color: #fff;
+}
+
+.dark-mode .theme-btn:hover {
+    color: #ddd;
+}
+
+/* Theme Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.sun-icon, .moon-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #fff;
+}
+
+.sun-icon {
+  left: 8px;
+}
+
+.moon-icon {
+  right: 8px;
+}
+
+.nav-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.theme-toggle {
+  margin-right: 20px;
+}
+
+/* Update container styles */
+.container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;  /* Add padding to prevent content from going under header */
+}
+
+/* Project Info Styles */
+.text-description {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--description-text);
+}
+
+.text-muted {
+    color: var(--color-primary-light) !important;
+}
+
+.text-secondary {
+    color: var(--muted-text) !important;
+}
+
+.project-info {
+    padding: 2rem !important;
+    height: 100%;
+    min-height: 00px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+
+
+@media (max-width: 768px) {
+    .project-info {
+        min-height: 500px;
+        margin-bottom: 2rem;
+    }
+}
+
+/* History Menu Styles */
+.history-menu {
+    max-height: 300px;
+    overflow-y: auto;
+    min-width: 250px;
+    background: rgba(255, 255, 255, 0.95);  /* Increased opacity */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+.history-item {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.8);  /* Solid background */
+    border: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--history-border);
+}
+
+.history-item small {
+    display: block;
+    color: var(--color-text-dark);
+    opacity: 0.8;  /* Increased opacity */
+    font-size: 0.8em;
+}
+
+.history-item strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: 1.1em;
+    margin-top: 4px;
+}
+
+/* Dark Mode Styles */
+.dark-mode .history-menu {
+    background: rgba(33, 33, 33, 0.95);  /* Increased opacity */
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .history-item {
+    background: rgba(45, 45, 45, 0.9);  /* Darker, more solid background */
+    border-color: var(--color-primary);
+}
+
+.dark-mode .history-item small {
+    color: rgba(255, 255, 255, 0.9);  /* Increased opacity */
+}
+
+/* Scrollbar Styles for History Menu */
+.history-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-menu::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 3px;
+}
+
+.history-menu::-webkit-scrollbar-track {
+    background: var(--glass-bg);
+    border-radius: 3px;
+}
+
+/* Firefox scrollbar styling */
+.history-menu {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--glass-bg);
+}
+
+/* History Modal Styles */
+.history-modal {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.1),
+        0 6px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(--history-bg);
+    color: var(--history-text);
+    border: 1px solid var(--history-border);
+}
+
+.history-modal.show {
+    display: block;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.history-header h6 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.close-history {
+    cursor: pointer;
+    padding: 0.5rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.close-history:hover {
+    opacity: 1;
+}
+
+.history-list {
+    padding: 1rem;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--history-border);
+}
+
+.history-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--history-item-hover);
+}
+
+.history-expression {
+    color: var(--color-text-dark);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.history-result {
+    color: var(--color-text-dark);
+    opacity: 0.5;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+}
+
+.history-answer {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.history-time {
+    display: block;
+    color: var(--history-text);
+    opacity: 0.7;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.history-empty {
+    text-align: center;
+    color: var(--history-text);
+    opacity: 0.5;
+    padding: 2rem;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .history-modal {
+    background: rgba(22, 25, 32, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .history-header {
+    background: rgba(22, 25, 32, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .history-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .history-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .history-expression,
+[data-theme="dark"] .history-result,
+[data-theme="dark"] .history-time {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .history-answer {
+    color: var(--color-primary-light);
+}
+
+[data-theme="dark"] .close-history {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Replace or update the history container styles */
+.history-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(100% - 120px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    flex-direction: column;
+    box-shadow: 
+        0 -8px 32px rgba(0, 0, 0, 0.15),
+        0 -4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Add this new class for showing the history container */
+.history-container.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    display: flex;
+}
+
+.dark-mode .history-container {
+    background: #333;
+    color: white;
+}
+
+.history-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f8f8f8;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.history-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background: inherit;
+}
+
+/* Add styles for the drag handle */
+.drag-handle {
+    width: 40px;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    margin: 8px auto;
+}
+
+.dark-mode .drag-handle {
+    background: #666;
+}
+
+/* Dark mode styles with enhanced glassmorphism */
+.dark-mode {
+    background: linear-gradient(135deg, #1a1f25 0%, #2c3e50 100%);
+    color: #ffffff;
+}
+
+.dark-mode .calculator {
+    background: rgba(22, 25, 32, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .calc-btn {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .calc-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode #display,
+.dark-mode #expression-display {
+    background: rgba(22, 25, 32, 0.8);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .history-modal {
+    background: rgba(22, 25, 32, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .history-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dark-mode .history-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
